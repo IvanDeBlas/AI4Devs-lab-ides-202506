@@ -1,0 +1,23 @@
+{
+  "env": {
+    "RepoSound": "Labs IA",
+    "BashTitle": "Labs IA - Master"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(npx prisma migrate:*)",
+      "Bash(docker-compose ps:*)",
+      "Bash(docker-compose up:*)",
+      "Bash(docker exec:*)",
+      "Bash(docker stop:*)",
+      "Bash(timeout /t 10 /nobreak)",
+      "Bash(docker logs ai4devs-lab-ides-202506-db-1)",
+      "Bash(docker-compose down:*)",
+      "Bash(docker start:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

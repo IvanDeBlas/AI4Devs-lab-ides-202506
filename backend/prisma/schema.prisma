@@ -18,3 +18,50 @@ model User {
   email String  @unique
   name  String?
 }
+
+model Candidate {
+  id            String           @id @default(uuid())
+  firstName     String
+  lastName      String
+  email         String           @unique
+  phone         String?
+  address       String?
+  cvFilePath    String?
+  cvFileName    String?
+  cvMimeType    String?
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+  education     Education[]
+  workExperience WorkExperience[]
+
+  @@index([email])
+  @@map("candidates")
+}
+
+model Education {
+  id           String    @id @default(uuid())
+  candidateId  String
+  institution  String
+  degree       String
+  fieldOfStudy String
+  startDate    DateTime
+  endDate      DateTime?
+  createdAt    DateTime  @default(now())
+  candidate    Candidate @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+
+  @@map("education")
+}
+
+model WorkExperience {
+  id          String    @id @default(uuid())
+  candidateId String
+  company     String
+  position    String
+  description String?
+  startDate   DateTime
+  endDate     DateTime?
+  createdAt   DateTime  @default(now())
+  candidate   Candidate @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+
+  @@map("work_experience")
+}
